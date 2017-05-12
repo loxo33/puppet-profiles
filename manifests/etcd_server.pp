@@ -34,12 +34,19 @@ $etcd_peers_container = hiera(etcd_peers_container),
     restart      => 'on-failure',
   }
 
+  file {'/etc/sysconfig':
+    ensure  => directory,
+    owner   => 0,
+    group   => 0,
+    mode    => '0755',
+  }
   file {'/etc/environment':
     ensure  => file,
     owner   => 0,
     group   => 0,
     mode    => '0644',
     content => template('profiles/etc-environment.erb'),
+    reqire  => File['/etc/sysconfig'],
   }
   file {'/etc/sysconfig/etcd-vars':
     ensure  => file,
@@ -47,5 +54,6 @@ $etcd_peers_container = hiera(etcd_peers_container),
     group   => 0,
     mode    => '0644',
     content => template('profiles/etcd-vars.erb'),
+    reqire  => File['/etc/sysconfig'],
   }
 }
