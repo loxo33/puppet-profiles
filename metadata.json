@@ -1,0 +1,15 @@
+{
+  "name": "loxo33-profiles",
+  "version": "0.1.0",
+  "author": "loxo33",
+  "summary": "Server and cluster profiles.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/loxo33/puppet-profiles.git",
+  "project_page": "https://github.com/loxo33/puppet-profiles",
+  "issues_url": "https://github.com/loxo33/puppet-profiles/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
