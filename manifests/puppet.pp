@@ -12,11 +12,16 @@ $dns_suffix = hiera(dns_suffix)
         --name %n \
         --net=host \
         --privileged \
+        -v /etc/systemd:/etc/systemd \
+        -v /etc/puppetlabs:/etc/puppetlabs \
+        -v /etc/sysconfig:/etc/sysconfig \
+        -v /etc/os-release:/etc/os-release:ro \
+        -v /etc/lsb-release:/etc/lsb-release:ro \
+        -v /etc/coreos:/etc/coreos:rw \
         -v /media/staging:/opt/staging \
         -v /var/lib/puppet:/var/lib/puppet \
         -v /var/run/puppetlabs:/var/run/puppetlabs \
         -v /home/core:/home/core \
-        -v /etc:/etc \
         -v /run:/run:ro \
         -v /usr/bin/systemctl:/usr/bin/systemctl:ro \
         -v /usr/lib/systemd:/usr/lib/systemd:ro \

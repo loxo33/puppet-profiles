@@ -40,7 +40,7 @@ $etcd_peers_container = hiera(etcd_peers_container),
     group   => 0,
     mode    => '0755',
   }
-  file {'/etc/environment':
+  file {'/etc/sysconfig/environment':
     ensure  => file,
     owner   => 0,
     group   => 0,
