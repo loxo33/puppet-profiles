@@ -46,7 +46,7 @@ $etcd_peers_container = hiera(etcd_peers_container),
     group   => 0,
     mode    => '0644',
     content => template('profiles/etc-environment.erb'),
-    require  => File{'/etc/sysconfig'},
+    require => File['/etc/sysconfig'],
   }
   file {'/etc/sysconfig/etcd-vars':
     ensure  => file,
@@ -54,6 +54,6 @@ $etcd_peers_container = hiera(etcd_peers_container),
     group   => 0,
     mode    => '0644',
     content => template('profiles/etcd-vars.erb'),
-    require  => File{'/etc/sysconfig'},
+    require => File['/etc/sysconfig'],
   }
 }
