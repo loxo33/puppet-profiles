@@ -9,7 +9,8 @@ $etcd_peers_container = hiera(etcd_peers_container),
     description  => 'etcd3',
     after        => 'etcd-peers.service',
     requires     => 'etcd-peers.service',
-    execstartpre => "/usr/bin/docker pull quay.io/coreos/etcd:${etcd_version}",
+    execstartpre => ["/usr/bin/docker pull quay.io/coreos/etcd:${etcd_version}",
+                     "/usr/bin/docker rm etcd3"],
     execstart    => "/usr/bin/docker run --name etcd3 \\
                     -v /var/lib/etcd3:/var/lib/etcd3 \\
                     -p 2379:2379 -p 2380:2380 \\
