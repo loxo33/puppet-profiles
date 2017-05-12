@@ -1,4 +1,4 @@
-# install Kubernetes etcd backend
+# Install Kubernetes etcd backend
 class profiles::etcd_server(
 $dns_suffix   = hiera(dns_suffix),
 $etcd_version = hiera(etcd_version),
@@ -19,12 +19,12 @@ $etcd_peers_container = hiera(etcd_peers_container),
     restartsec   => '5',
     restart      => 'always',
   }
-  coreos::unit {'etcd-peers':
+  coreos::unit {'debug-etcd':
     description  => 'etcd debugging service',
     execstartpre => '/usr/bin/curl -sSL -o /opt/bin/jq http://stedolan.github.io/jq/download/linux64/jq && /usr/bin/chmod +x /opt/bin/jq',
     execstart    => '/usr/bin/bash -c "while true; do curl -sL http://127.0.0.1:4001/v2/stats/self | /opt/bin/jq . ; sleep 1 ; done"',
   }
-  coreos::unit {'debug-etcd':
+  coreos::unit {'etcd-peers':
     description  => 'track etcd peer nodes',
     after        => 'docker.service',
     requires     => 'docker.service',
