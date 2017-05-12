@@ -15,6 +15,7 @@ $dns_suffix = hiera(dns_suffix)
         -v /etc/systemd:/etc/systemd \
         -v /etc/puppetlabs:/etc/puppetlabs \
         -v /etc/sysconfig:/etc/sysconfig \
+        -v /etc/environment:/etc/environment \
         -v /etc/os-release:/etc/os-release:ro \
         -v /etc/lsb-release:/etc/lsb-release:ro \
         -v /etc/coreos:/etc/coreos:rw \
