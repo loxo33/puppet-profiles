@@ -1,6 +1,6 @@
 # install Kubernetes etcd backend
 class profiles::etcd_server(
-$dns_suffix   = hiera(dns_suffix)
+$dns_suffix   = hiera(dns_suffix),
 $etcd_version = hiera(etcd_version),
 $container_registry = hiera(container_registry),
 $etcd_peers_container = hiera(etcd_peers_container),
@@ -48,5 +48,4 @@ $etcd_peers_container = hiera(etcd_peers_container),
     mode    => '0644',
     content => template('profiles/etcd-vars.erb'),
   }
-
 }
