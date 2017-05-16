@@ -6,7 +6,9 @@ $dns_suffix = hiera(dns_suffix)
     unit_description  => 'puppet agent service',
     unit_after        => ['docker.service'],
     unit_requires     => ['docker.service'],
-    execstartpre      => ["/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'"],
+    execstartpre      => ["/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'",
+                          "ExecStartPre=/usr/bin/docker pull loxo33/puppet-in-docker"
+                         ]
     execstart         =>
         "/usr/bin/docker run \\
         --name %n \\
