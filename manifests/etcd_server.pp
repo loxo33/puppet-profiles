@@ -25,15 +25,15 @@ $etcd_peers_container = hiera(etcd_peers_container),
 #    execstartpre      => ['/usr/bin/curl -sSL -o /opt/bin/jq http://stedolan.github.io/jq/download/linux64/jq && /usr/bin/chmod +x /opt/bin/jq'],
 #    execstart         => '/usr/bin/bash -c "while true; do curl -sL http://127.0.0.1:4001/v2/stats/self | /opt/bin/jq . ; sleep 1 ; done"',
 #  }
-#  coreos::unit {'etcd-peers':
-#    unit_description  => 'track etcd peer nodes',
-#    unit_after        => ['docker.service'],
-#    unit_requires     => ['docker.service'],
-#    execstartpre      => ["/usr/bin/docker pull ${container_registry}/${etcd_peers_container}"],
-#    execstart         => "/usr/bin/docker run --rm=true -v /etc/sysconfig/:/etc/sysconfig/ ${container_registry}/${etcd_peers_container}",
-#    restartsec        => '10',
-#    restart           => 'on-failure',
-#  }
+  coreos::unit {'etcd-peers':
+    unit_description  => 'track etcd peer nodes',
+    unit_after        => ['docker.service'],
+    unit_requires     => ['docker.service'],
+    execstartpre      => ["/usr/bin/docker pull ${container_registry}/${etcd_peers_container}"],
+    execstart         => "/usr/bin/docker run --rm=true -v /etc/sysconfig/:/etc/sysconfig/ ${container_registry}/${etcd_peers_container}",
+    restartsec        => '10',
+    restart           => 'on-failure',
+  }
 
   file {'/etc/sysconfig':
     ensure  => directory,
