@@ -3,11 +3,11 @@ class profiles::puppet (
 $dns_suffix = hiera(dns_suffix)
 ){
   coreos::unit {'puppet-agent':
-    description  => 'puppet agent service',
-    after        => ['docker.service'],
-    requires     => ['docker.service'],
-    execstartpre => ["/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'"],
-    execstart    =>
+    unit_description  => 'puppet agent service',
+    unit_after        => ['docker.service'],
+    unit_requires     => ['docker.service'],
+    execstartpre      => ["/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'"],
+    execstart         =>
         "/usr/bin/docker run \\
         --name %n \\
         --net=host \\
