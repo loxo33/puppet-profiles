@@ -14,6 +14,7 @@ $dns_suffix = hiera(dns_suffix)
         --name %n \\
         --net=host \\
         --privileged \\
+        --env-file /etc/environment \\
         -v /etc/systemd:/etc/systemd \\
         -v /etc/puppetlabs:/etc/puppetlabs \\
         -v /etc/sysconfig:/etc/sysconfig \\
