@@ -33,6 +33,7 @@ $etcd_peers_container = hiera(etcd_peers_container),
     execstart         => "/usr/bin/docker run --rm=true -v /etc/sysconfig/:/etc/sysconfig/ ${container_registry}/${etcd_peers_container}",
     restartsec        => '10',
     restart           => 'on-failure',
+    has_service       => 'false',
   }
 
   file {'/etc/sysconfig':
